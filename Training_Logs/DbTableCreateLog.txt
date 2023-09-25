@@ -1,0 +1,18 @@
+2020-02-19/16:24:02		Tables created successfully!!
+2020-02-19/16:25:31		Tables created successfully!!
+2020-02-19/16:38:40		Tables created successfully!!
+2020-02-19/16:50:10		Tables created successfully!!
+2020-02-19/16:53:17		Tables created successfully!!
+2020-02-19/17:47:57		Tables created successfully!!
+2020-02-19/18:49:21		Tables created successfully!!
+2020-02-19/18:50:04		Tables created successfully!!
+2023-09-24/14:04:52		Error while creating table: unable to open database file 
+2023-09-24/14:24:54		Error while creating table: 1146 (42S02): Table 'training.sqlite_master' doesn't exist 
+2023-09-24/14:28:45		Tables created successfully!!
+2023-09-24/14:43:53		Tables created successfully!!
+2023-09-24/16:03:54		Tables created successfully!!
+2023-09-24/16:05:29		Tables created successfully!!
+2023-09-24/16:12:57		Tables created successfully!!
+2023-09-24/16:28:05		Tables created successfully!!
+2023-09-24/16:28:36		Tables created successfully!!
+2023-09-25/16:20:09		Tables created successfully!!
