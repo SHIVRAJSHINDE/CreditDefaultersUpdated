@@ -38,6 +38,7 @@ class Model_Finder:
 
             #Creating an object of the Grid Search class
             self.grid = GridSearchCV(estimator=self.gnb, param_grid=self.param_grid, cv=3,  verbose=3)
+
             #finding the best parameters
             self.grid.fit(train_x, train_y)
 
@@ -47,6 +48,7 @@ class Model_Finder:
 
             #creating a new model with the best parameters
             self.gnb = GaussianNB(var_smoothing=self.var_smoothing)
+
             # training the mew model
             self.gnb.fit(train_x, train_y)
             self.logger_object.log(self.file_object,
@@ -64,15 +66,15 @@ class Model_Finder:
     def get_best_params_for_xgboost(self,train_x,train_y):
 
         """
-                                        Method Name: get_best_params_for_xgboost
-                                        Description: get the parameters for XGBoost Algorithm which give the best accuracy.
-                                                     Use Hyper Parameter Tuning.
-                                        Output: The model with the best parameters
-                                        On Failure: Raise Exception
+        Method Name: get_best_params_for_xgboost
+        Description: get the parameters for XGBoost Algorithm which give the best accuracy.
+                     Use Hyper Parameter Tuning.
+        Output: The model with the best parameters
+        On Failure: Raise Exception
 
-                                        Written By: iNeuron Intelligence
-                                        Version: 1.0
-                                        Revisions: None
+        Written By: iNeuron Intelligence
+        Version: 1.0
+        Revisions: None
 
                                 """
         self.logger_object.log(self.file_object,
@@ -82,10 +84,11 @@ class Model_Finder:
             self.param_grid_xgboost = {
 
                 "n_estimators": [50,100, 130],
-                               "max_depth": range(3, 11, 1),
-    "random_state":[0,50,100]
+                "max_depth": range(3, 11, 1),
+                "random_state":[0,50,100]
 
             }
+
             # Creating an object of the Grid Search class
             self.grid= GridSearchCV(XGBClassifier(objective='binary:logistic'),self.param_grid_xgboost, verbose=3,cv=2,n_jobs=-1)
             # finding the best parameters
@@ -100,9 +103,11 @@ class Model_Finder:
             self.xgb = XGBClassifier(random_state=self.random_state, max_depth=self.max_depth,n_estimators= self.n_estimators, n_jobs=-1 )
             # training the mew model
             self.xgb.fit(train_x, train_y)
+
             self.logger_object.log(self.file_object,
                                    'XGBoost best params: ' + str(
                                        self.grid.best_params_) + '. Exited the get_best_params_for_xgboost method of the Model_Finder class')
+
             return self.xgb
         except Exception as e:
             self.logger_object.log(self.file_object,
@@ -115,19 +120,20 @@ class Model_Finder:
 
     def get_best_model(self,train_x,train_y,test_x,test_y):
         """
-                                                Method Name: get_best_model
-                                                Description: Find out the Model which has the best AUC score.
-                                                Output: The best model name and the model object
-                                                On Failure: Raise Exception
+            Method Name: get_best_model
+            Description: Find out the Model which has the best AUC score.
+            Output: The best model name and the model object
+            On Failure: Raise Exception
 
-                                                Written By: iNeuron Intelligence
-                                                Version: 1.0
-                                                Revisions: None
+            Written By: iNeuron Intelligence
+            Version: 1.0
+            Revisions: None
 
                                         """
         self.logger_object.log(self.file_object,
                                'Entered the get_best_model method of the Model_Finder class')
         # create best model for XGBoost
+
         try:
             self.xgboost= self.get_best_params_for_xgboost(train_x,train_y)
             self.prediction_xgboost = self.xgboost.predict(test_x) # Predictions using the XGBoost Model
